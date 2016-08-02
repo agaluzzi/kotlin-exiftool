@@ -1,7 +1,6 @@
 package galuzzi.exif
 
 import galuzzi.io.Gobbler
-import java.io.IOException
 import java.nio.file.Path
 import java.nio.file.Paths
 
@@ -37,7 +36,7 @@ class ExifTool private constructor(process:Process)
         output.writeString(value)
         output.endRequest()
 
-        readOK()
+        input.readOK()
     }
 
     fun clearOptions()
@@ -45,10 +44,20 @@ class ExifTool private constructor(process:Process)
         output.beginRequest(RequestType.ClearOptions)
         output.endRequest()
 
-        readOK()
+        input.readOK()
     }
 
-    fun extractInfo(file:Path):Map<String, Any>
+    fun setTags(tagNames:Array<String>)
+    {
+        output.beginRequest(RequestType.SetTags)
+        output.writeInt(tagNames.size)
+        tagNames.forEach { output.writeString(it) }
+        output.endRequest()
+
+        input.readOK()
+    }
+
+    fun extractInfo(file:Path):TagInfo
     {
         output.beginRequest(RequestType.ExtractInfo)
         output.writeString(file.toAbsolutePath().toString())
@@ -57,40 +66,8 @@ class ExifTool private constructor(process:Process)
         return input.readTagInfo()
     }
 
-    fun extractInfo(file:String):Map<String, Any>
+    fun extractInfo(file:String):TagInfo
     {
         return extractInfo(Paths.get(file))
     }
-
-    private fun readOK()
-    {
-        input.readBegin()
-        val type = input.readByte()
-        val msg:String
-        when (type)
-        {
-            ResponseType.OK.code -> msg = ""
-
-            ResponseType.Error.code -> msg = input.readString()
-
-            else -> throw IOException("Unexpected response type: $type")
-        }
-        input.readEnd()
-
-        if (type != ResponseType.OK.code)
-        {
-            throw Exception("Error: $msg")
-        }
-    }
 }
-
-interface ExifHandler
-{
-    fun string(tag:String, value:String)
-
-    fun binary(tag:String, value:ByteArray)
-
-    fun error(message:String)
-}
-
-

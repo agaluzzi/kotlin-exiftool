@@ -6,14 +6,18 @@ RequestBody  = SetOption /
                ClearOptions /
                ExtractInfo
           
-SetOption    = %x01   ; (1) type identifier
-               STRING ; option name
-               STRING ; option value
+SetOption    = %x01    ; (1) type identifier
+               STRING  ; option name
+               STRING  ; option value
 
-ClearOptions = %x02   ; (2) type identifier
+ClearOptions = %x02    ; (2) type identifier
 
-ExtractInfo  = %x03   ; (3) type identifier
-               STRING ; filename
+SetTags      = %x03    ; (3) type identifier
+               INT     ; number of tag names
+               *STRING ; tag names
+
+ExtractInfo  = %x04    ; (3) type identifier
+               STRING  ; filename
 ```
 
 Responses:
@@ -31,7 +35,7 @@ Error        = %x02   ; (1) type identifier
                
 TagInfo      = %x03   ; (2) type identifier
                INT    ; number of tags
-               *Tag   ; tag names/valuesper
+               *Tag   ; tag names/values
                
 Tag          = STRING                      ; tag name
                (StringValue / BinaryValue) ; tag value

@@ -1,11 +1,12 @@
 package galuzzi.exif
 
+import galuzzi.ext.closeSafely
+import galuzzi.ext.readFully
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import java.util.*
 
 //**********************************************************************
 // Constants
@@ -27,7 +28,8 @@ enum class RequestType(override val code:Int) : Coded
 {
     SetOption(1),
     ClearOptions(2),
-    ExtractInfo(3),
+    SetTags(3),
+    ExtractInfo(4),
 }
 
 enum class ResponseType(override val code:Int) : Coded
@@ -48,8 +50,7 @@ enum class ValueType(override val code:Int) : Coded
 //**********************************************************************
 
 /**
- * <p>
- * <i>Created by <b>agaluzzi</b> on 7/28/2016</i>
+ * An encoder for writing EXIF requests to an output stream.
  */
 class Encoder(val output:OutputStream)
 {
@@ -73,7 +74,7 @@ class Encoder(val output:OutputStream)
 
     fun writeString(value:String)
     {
-        value.forEach { output.write(it.toInt()) }
+        value.forEach { writeChar(it) }
         output.write(0)
     }
 
@@ -120,13 +121,16 @@ class Encoder(val output:OutputStream)
 // Decoder
 //**********************************************************************
 
+/**
+ * An decoder for reading EXIF responses from an input stream.
+ */
 class Decoder(val input:InputStream)
 {
     val intBuffer:ByteBuffer = newIntBuffer()
 
     fun readInt():Int
     {
-        read(4, input, intBuffer.array())
+        input.readFully(intBuffer.array(), 0, 4)
         return intBuffer.getInt(0)
     }
 
@@ -161,7 +165,7 @@ class Decoder(val input:InputStream)
     {
         val length = readInt()
         val data = ByteArray(length)
-        read(length, input, data)
+        input.readFully(data, 0, length)
         return data
     }
 
@@ -172,54 +176,58 @@ class Decoder(val input:InputStream)
         {
             ValueType.String.code -> return readString()
             ValueType.Binary.code -> return readBinary()
-            else -> throw IOException("Input stream corrupted -- Unexpected value type: $type")
-        }
-    }
-
-    fun readResponse(expect:ResponseType, handler:() -> Unit)
-    {
-        readBegin()
-        val type = readByte()
-
-        if (type == ResponseType.Error.code)
-        {
-            val message = readString()
-            readEnd()
-            throw IOException("Error: $message")
-        }
-        else if (type == expect.code)
-        {
-            handler.invoke()
-            readEnd()
-        }
-        else
-        {
-            throw IOException("Input stream corrupted -- Unexpected response type: $type")
+            else ->
+            {
+                throw corrupted("Unexpected value type: $type")
+            }
         }
     }
 
     fun readOK()
     {
-        readResponse(ResponseType.OK) {/* nothing to do */ }
+        readResponse(ResponseType.OK,
+                     object : ResponseHandler
+                     {
+                         override fun read()
+                         {
+                             // nothing more to read
+                         }
+
+                         override fun onError(msg:String)
+                         {
+                             throw IOException("Error: $msg")
+                         }
+                     })
     }
 
-    fun readTagInfo():Map<String, Any>
+    fun readTagInfo():TagInfo
     {
-        val map = HashMap<String, Any>()
+        val info = TagInfo()
 
-        readResponse(ResponseType.TagInfo) {
+        readResponse(ResponseType.TagInfo,
+                     object : ResponseHandler
+                     {
+                         override fun read()
+                         {
+                             // Read the number of tag/value pairs
+                             val count = readInt()
 
-            val count = readInt()
+                             // Read each tag/value...
+                             for (i in 1..count)
+                             {
+                                 val tag:String = readString()
+                                 val value:Any = readValue()
+                                 info.put(tag, value)
+                             }
+                         }
 
-            for (i in 1..count)
-            {
-                val tag:String = readString()
-                val value:Any = readValue()
-                map[tag] = value
-            }
-        }
+                         override fun onError(msg:String)
+                         {
+                             info.errorMessage = msg
+                         }
+                     })
 
-        return map
+        return info
     }
 
     fun readBegin()
@@ -232,13 +240,41 @@ class Decoder(val input:InputStream)
         readMagicNumber(END, "END")
     }
 
+    private fun readResponse(expect:ResponseType, handler:ResponseHandler)
+    {
+        readBegin()
+        val type = readByte()
+
+        if (type == ResponseType.Error.code)
+        {
+            val message = readString()
+            readEnd()
+            handler.onError(message)
+        }
+        else if (type == expect.code)
+        {
+            handler.read()
+            readEnd()
+        }
+        else
+        {
+            throw corrupted("Unexpected response type: $type")
+        }
+    }
+
     private fun readMagicNumber(number:Int, name:String)
     {
         val value = readInt()
         if (value != number)
         {
-            throw IOException("Input stream corrupted -- Wrong $name token; value was: 0x%08X".format(value))
+            throw corrupted("Wrong $name token; value was: 0x%08X".format(value))
         }
+    }
+
+    private fun corrupted(msg:String):IOException
+    {
+        input.closeSafely()
+        return IOException("Input stream corrupted -- $msg")
     }
 }
 
@@ -246,24 +282,17 @@ class Decoder(val input:InputStream)
 // Helpers
 //**********************************************************************
 
+/**
+ * Creates a 4-byte [ByteBuffer] for holding 32-bit integers, using the platform native byte ordering.
+ */
 private fun newIntBuffer():ByteBuffer
 {
     return ByteBuffer.allocate(4).order(ByteOrder.nativeOrder())
 }
 
-private fun read(length:Int, input:InputStream, dst:ByteArray)
+private interface ResponseHandler
 {
-    var offset = 0
-    var remaining = length
+    fun read()
 
-    while (remaining > 0)
-    {
-        val result = input.read(dst, offset, remaining)
-        if (result < 0)
-        {
-            throw IOException("Failed to read $length bytes -- End of input stream")
-        }
-        remaining -= result
-        offset += result
-    }
+    fun onError(msg:String)
 }

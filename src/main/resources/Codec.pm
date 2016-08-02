@@ -13,7 +13,8 @@ use constant {
     # Request types
     REQUEST_SETOPTION    => 1,
     REQUEST_CLEAROPTIONS => 2,
-    REQUEST_EXTRACTINFO  => 3,
+    REQUEST_SETTAGS      => 3,
+    REQUEST_EXTRACTINFO  => 4,
 
     # Response types
     RESPONSE_OK          => 1,
@@ -25,7 +26,7 @@ use constant {
     VALUE_BINARY         => 2,
 };
 
-# Set binary mode for stdout (necessary?)
+# Set binary mode for standard I/O streams (avoids issues with newline substitutions)
 binmode(STDIN) || die "Failed to set binary mode for STDIN";
 binmode(STDOUT) || die "Failed to set binary mode for STDOUT";
 
@@ -150,7 +151,7 @@ sub readEnd
 
 sub writeEnd
 {
-    writeInt(END_TOKEN);
+    writeInt( END_TOKEN );
 }
 
 #-------------------------------------------------------------------------------
