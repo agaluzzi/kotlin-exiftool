@@ -1,30 +1,46 @@
 package galuzzi.exif
 
+import galuzzi.file.WorkDir
 import galuzzi.io.Gobbler
+import galuzzi.io.extractZip
+import galuzzi.io.getResource
 import java.io.IOException
+import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
 /**
  * @author Aaron Galuzzi (3/23/2016)
  */
-class ExifTool private constructor(process:Process)
+class ExifTool private constructor(val process:Process)
 {
     companion object
     {
         fun launch():ExifTool
         {
-            // TODO: Unpack Perl script and ExifTool library
-
-            val cmd = arrayListOf("perl",
-                                  "C:\\Projects\\agaluzzi\\kotlin-exiftool\\src\\main\\resources\\ExifToolWrapper.pl")
-
-            val process = ProcessBuilder(cmd).start()
-
-            Gobbler("stderr", process.errorStream).start()
-
+            val script = unpack()
+            val process = ProcessBuilder("perl", script.toAbsolutePath().toString()).start()
             return ExifTool(process)
         }
+
+        @Synchronized
+        private fun unpack():Path
+        {
+            val dir = WorkDir.create(WorkDir.Type.TEMP, "kotlin-exiftool")
+            val script = dir.resolve("ExifToolWrapper.pl")
+            if (!Files.exists(script))
+            {
+                extractZip(getResource("exiftool-lib-10.25.zip"), dir.path)
+                getResource("Codec.pm").copyInto(dir)
+                getResource("ExifToolWrapper.pl").copyInto(dir) // do last
+            }
+            return script
+        }
+    }
+
+    init
+    {
+        Gobbler("stderr", process.errorStream).start()
     }
 
     val output = Encoder(process.outputStream.buffered())
@@ -60,6 +76,12 @@ class ExifTool private constructor(process:Process)
     fun extractInfo(file:String):Map<String, Any>
     {
         return extractInfo(Paths.get(file))
+    }
+
+    fun shutdown():Unit
+    {
+        process.destroy()
+        process.waitFor()
     }
 
     private fun readOK()

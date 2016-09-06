@@ -15,7 +15,6 @@ use lib "$FindBin::Bin";
 use Codec;
 
 # Import ExifTool library
-use lib 'C:\Apps\Image-ExifTool-10.23\lib'; # TODO: Remove this when library is being unpacked in same location
 use Image::ExifTool qw(:Public);
 
 #-------------------------------------------------------------------------------
@@ -54,18 +53,6 @@ exit 0;
 #-------------------------------------------------------------------------------
 # Helper functions:
 
-sub clearOptions
-{
-    # Read the rest of the request
-    readEnd();
-
-    # Perform action
-    $tool->ClearOptions();
-
-    # Send response
-    sendOK();
-}
-
 sub setOption
 {
     # Read the rest of the request
@@ -75,6 +62,18 @@ sub setOption
 
     # Perform action
     $tool->Options( $name => $value );
+
+    # Send response
+    sendOK();
+}
+
+sub clearOptions
+{
+    # Read the rest of the request
+    readEnd();
+
+    # Perform action
+    $tool->ClearOptions();
 
     # Send response
     sendOK();

@@ -1,5 +1,6 @@
 package galuzzi.exif
 
+import galuzzi.file.WorkDir
 import galuzzi.io.Gobbler
 import org.testng.Assert.assertEquals
 import java.io.BufferedInputStream

@@ -23,21 +23,21 @@ interface Coded
     val code:Int
 }
 
-enum class RequestType(override val code:Int) : Coded
+enum class RequestType(override val code:Int):Coded
 {
     SetOption(1),
     ClearOptions(2),
     ExtractInfo(3),
 }
 
-enum class ResponseType(override val code:Int) : Coded
+enum class ResponseType(override val code:Int):Coded
 {
     OK(1),
     Error(2),
     TagInfo(3),
 }
 
-enum class ValueType(override val code:Int) : Coded
+enum class ValueType(override val code:Int):Coded
 {
     String(1),
     Binary(2),
