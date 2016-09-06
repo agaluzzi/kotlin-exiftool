@@ -53,7 +53,7 @@ class ExifTool private constructor(val process:Process)
         output.writeString(value)
         output.endRequest()
 
-        readOK()
+        input.readOK()
     }
 
     fun clearOptions()
@@ -61,10 +61,20 @@ class ExifTool private constructor(val process:Process)
         output.beginRequest(RequestType.ClearOptions)
         output.endRequest()
 
-        readOK()
+        input.readOK()
     }
 
-    fun extractInfo(file:Path):Map<String, Any>
+    fun setTags(tagNames:Array<String>)
+    {
+        output.beginRequest(RequestType.SetTags)
+        output.writeInt(tagNames.size)
+        tagNames.forEach { output.writeString(it) }
+        output.endRequest()
+
+        input.readOK()
+    }
+
+    fun extractInfo(file:Path):TagInfo
     {
         output.beginRequest(RequestType.ExtractInfo)
         output.writeString(file.toAbsolutePath().toString())
@@ -73,7 +83,7 @@ class ExifTool private constructor(val process:Process)
         return input.readTagInfo()
     }
 
-    fun extractInfo(file:String):Map<String, Any>
+    fun extractInfo(file:String):TagInfo
     {
         return extractInfo(Paths.get(file))
     }
@@ -105,14 +115,3 @@ class ExifTool private constructor(val process:Process)
         }
     }
 }
-
-interface ExifHandler
-{
-    fun string(tag:String, value:String)
-
-    fun binary(tag:String, value:ByteArray)
-
-    fun error(message:String)
-}
-
-

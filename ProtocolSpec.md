@@ -29,7 +29,12 @@ SetOption    = %x01   ; type = 1
 ClearOptions = %x02   ; type = 2
                ; result = OK
 
-ExtractInfo  = %x03   ; type = 3
+SetTags      = %x03    ; type = 3
+               INT     ; number of tag names
+               *STRING ; tag names
+               ; result = OK
+               
+ExtractInfo  = %x04   ; type = 4
                STRING ; filename
                ; result = TagInfo | Error
 ```
@@ -49,7 +54,7 @@ Error        = %x02   ; type = 2
                
 TagInfo      = %x03   ; type = 3
                INT    ; number of tags
-               *Tag   ; tag names/valuesper
+               *Tag   ; tag names/values
                
 Tag          = STRING                      ; tag name
                (StringValue / BinaryValue) ; tag value
