@@ -1,2 +1,2 @@
 # kotlin-exiftool
-A Kotlin API (wrapper) for the ever-popular ExifTool by Phil Harvey
+A Kotlin wrapper library for the ever-popular [ExifTool](http://www.sno.phy.queensu.ca/~phil/exiftool/).
