@@ -17,11 +17,6 @@ fun Path.isFile():Boolean
     return !Files.isDirectory(this)
 }
 
-fun Path.list(action:(path:Path) -> Unit)
-{
-    Files.list(this).forEach(action)
-}
-
 fun Path.walk(action:(path:Path) -> Unit)
 {
     Files.walk(this).forEach(action)

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.io.InputStream
 
-private val logger = LoggerFactory.getLogger("galuzzi.io")
+private val logger = LoggerFactory.getLogger("galuzzi.ext.IO")
 
 /**
  * Closes a resource, catching and logging any exceptions.

@@ -10,7 +10,7 @@ buildscript {
     }
 }
 
-group = 'net.galuzzi'
+group = 'galuzzi'
 version = '0.1'
 
 

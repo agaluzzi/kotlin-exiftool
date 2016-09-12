@@ -1,0 +1,138 @@
+ExifToolVersion                 : 10.25
+FileName                        : example.jpg
+Directory                       : .
+FileSize                        : 32 kB
+FileModifyDate                  : 2016:09:05 14:44:51-06:00
+FileAccessDate                  : 2016:09:05 14:44:40-06:00
+FileCreateDate                  : 2016:09:05 14:44:50-06:00
+FilePermissions                 : rw-rw-rw-
+FileType                        : JPEG
+FileTypeExtension               : jpg
+MIMEType                        : image/jpeg
+JFIFVersion                     : 1.01
+ExifByteOrder                   : Little-endian (Intel, II)
+Make                            : Canon
+Model                           : Canon PowerShot S40
+Orientation                     : Horizontal (normal)
+XResolution                     : 180
+YResolution                     : 180
+ResolutionUnit                  : inches
+ModifyDate                      : 2003:12:14 12:01:44
+YCbCrPositioning                : Centered
+ExposureTime                    : 1/500
+FNumber                         : 4.9
+ExifVersion                     : 0220
+DateTimeOriginal                : 2003:12:14 12:01:44
+CreateDate                      : 2003:12:14 12:01:44
+ComponentsConfiguration         : Y, Cb, Cr, -
+CompressedBitsPerPixel          : 5
+ShutterSpeedValue               : 1/501
+ApertureValue                   : 5.0
+MaxApertureValue                : 2.8
+Flash                           : Auto, Did not fire
+FocalLength                     : 21.3 mm
+MacroMode                       : Normal
+SelfTimer                       : Off
+Quality                         : Superfine
+CanonFlashMode                  : Auto
+ContinuousDrive                 : Single
+FocusMode                       : Single
+RecordMode                      : JPEG
+CanonImageSize                  : Large
+EasyMode                        : Manual
+DigitalZoom                     : None
+Contrast                        : Normal
+Saturation                      : Normal
+Sharpness                       : 0
+CameraISO                       : 100
+MeteringMode                    : Center-weighted average
+FocusRange                      : Auto
+AFPoint                         : Center
+CanonExposureMode               : Program AE
+LensType                        : n/a
+MaxFocalLength                  : 21.3125 mm
+MinFocalLength                  : 7.09375 mm
+FocalUnits                      : 32/mm
+MaxAperture                     : 5
+MinAperture                     : 8
+FlashActivity                   : 0
+FlashBits                       : (none)
+FocusContinuous                 : Single
+AESetting                       : Normal AE
+DisplayAperture                 : 4.9
+ZoomSourceWidth                 : 2272
+ZoomTargetWidth                 : 2272
+SpotMeteringMode                : AF Point
+FocalType                       : Zoom
+FocalPlaneXSize                 : 7.26 mm
+FocalPlaneYSize                 : 5.46 mm
+AutoISO                         : 100
+BaseISO                         : 100
+MeasuredEV                      : 13.63
+TargetAperture                  : 5
+TargetExposureTime              : 1/501
+ExposureCompensation            : 0
+WhiteBalance                    : Auto
+SlowShutter                     : Off
+SequenceNumber                  : 0
+OpticalZoomCode                 : 6
+FlashGuideNumber                : 0
+AFPointsInFocus                 : Center
+FlashExposureComp               : 0
+AutoExposureBracketing          : Off
+AEBBracketValue                 : 0
+ControlMode                     : Camera Local Control
+FocusDistanceUpper              : 7.82 m
+FocusDistanceLower              : 0 m
+BulbDuration                    : 0
+CameraType                      : Compact
+CanonImageType                  : IMG:PowerShot S40 JPEG
+CanonFirmwareVersion            : Firmware Version 1.10
+FileNumber                      : 117-1771
+OwnerName                       : Andreas Huggel
+CanonModelID                    : PowerShot S40
+UserComment                     : 
+FlashpixVersion                 : 0100
+ColorSpace                      : sRGB
+ExifImageWidth                  : 2272
+ExifImageHeight                 : 1704
+InteropIndex                    : R98 - DCF basic file (sRGB)
+InteropVersion                  : 0100
+RelatedImageWidth               : 2272
+RelatedImageHeight              : 1704
+FocalPlaneXResolution           : 8114.285714
+FocalPlaneYResolution           : 8114.285714
+FocalPlaneResolutionUnit        : inches
+SensingMethod                   : One-chip color area
+FileSource                      : Digital Camera
+CustomRendered                  : Normal
+ExposureMode                    : Auto
+DigitalZoomRatio                : 1
+SceneCaptureType                : Standard
+Compression                     : JPEG (old-style)
+ThumbnailOffset                 : 2066
+ThumbnailLength                 : 5448
+ImageWidth                      : 480
+ImageHeight                     : 360
+EncodingProcess                 : Baseline DCT, Huffman coding
+BitsPerSample                   : 8
+ColorComponents                 : 3
+YCbCrSubSampling                : YCbCr4:2:0 (2 2)
+Aperture                        : 4.9
+DriveMode                       : Single-frame Shooting
+ISO                             : 100
+ImageSize                       : 480x360
+Lens                            : 7.1 - 21.3 mm
+LensID                          : Unknown 7-21mm
+Megapixels                      : 0.173
+ScaleFactor35efl                : 4.9
+ShootingMode                    : Program AE
+ShutterSpeed                    : 1/500
+ThumbnailImage                  : (Binary data 5448 bytes, use -b option to extract)
+CircleOfConfusion               : 0.006 mm
+DOF                             : 2.17 m (3.11 - 5.28 m)
+FOV                             : 19.7 deg
+FocalLength35efl                : 21.3 mm (35 mm equivalent: 103.7 mm)
+HyperfocalDistance              : 15.02 m
+Lens35efl                       : 7.1 - 21.3 mm (35 mm equivalent: 34.5 - 103.7 mm)
+LightValue                      : 13.6

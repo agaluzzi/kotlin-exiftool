@@ -16,6 +16,8 @@ class ExifTool private constructor(val process:Process)
 {
     companion object
     {
+        val forceExtract = true
+
         fun launch():ExifTool
         {
             val script = unpack()
@@ -28,7 +30,7 @@ class ExifTool private constructor(val process:Process)
         {
             val dir = WorkDir.create(WorkDir.Type.TEMP, "kotlin-exiftool")
             val script = dir.resolve("ExifToolWrapper.pl")
-            if (!Files.exists(script))
+            if (forceExtract || !Files.exists(script))
             {
                 extractZip(getResource("exiftool-lib-10.25.zip"), dir.path)
                 getResource("Codec.pm").copyInto(dir)

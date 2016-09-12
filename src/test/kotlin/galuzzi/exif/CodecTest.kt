@@ -2,17 +2,20 @@ package galuzzi.exif
 
 import galuzzi.file.WorkDir
 import galuzzi.io.Gobbler
+import galuzzi.io.getResource
 import org.testng.Assert.assertEquals
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
-import java.io.InputStream
 
 fun main(args:Array<String>)
 {
-    val cmd = arrayListOf("perl",
-                          "C:\\Projects\\agaluzzi\\kotlin-exiftool\\src\\test\\resources\\CodecTest.pl")
+    val dir = WorkDir.create(WorkDir.Type.TEMP, "CodecTest")
+    val path = getResource("CodecTest.pl").copyInto(dir)
+    getResource("Codec.pm").copyInto(dir)
 
-    val proc = ProcessBuilder(cmd).start()
+    val cmd = arrayListOf("perl", path.toString())
+
+    val proc = ProcessBuilder(cmd).directory(dir.path.toFile()).start()
     val stdin:BufferedOutputStream = proc.outputStream.buffered()
     val stdout:BufferedInputStream = proc.inputStream.buffered()
     val stderr:BufferedInputStream = proc.errorStream.buffered()

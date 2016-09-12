@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 
-use lib "C:/Projects/agaluzzi/kotlin-exiftool/src/main/resources";
 use Codec;
 
 readBegin() || die("Failed to read BEGIN");

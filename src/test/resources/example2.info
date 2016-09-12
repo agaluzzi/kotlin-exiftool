@@ -1,0 +1,205 @@
+ExifToolVersion                 : 10.25
+FileName                        : example2.jpg
+Directory                       : .
+FileSize                        : 3.4 MB
+FileModifyDate                  : 2016:09:11 10:56:24-06:00
+FileAccessDate                  : 2016:09:11 21:32:58-06:00
+FileCreateDate                  : 2016:09:11 21:33:04-06:00
+FilePermissions                 : rw-rw-rw-
+FileType                        : JPEG
+FileTypeExtension               : jpg
+MIMEType                        : image/jpeg
+ExifByteOrder                   : Big-endian (Motorola, MM)
+Make                            : PENTAX Corporation
+Model                           : PENTAX K10D
+Orientation                     : Horizontal (normal)
+XResolution                     : 72
+YResolution                     : 72
+ResolutionUnit                  : inches
+Software                        : K10D Ver 1.00
+ModifyDate                      : 2016:09:11 10:56:23
+YCbCrPositioning                : Co-sited
+ExposureTime                    : 1/350
+FNumber                         : 9.5
+ExposureProgram                 : Program AE
+ExifVersion                     : 0221
+DateTimeOriginal                : 2016:09:11 10:56:23
+CreateDate                      : 2016:09:11 10:56:23
+ComponentsConfiguration         : Y, Cb, Cr, -
+Flash                           : Off, Did not fire
+FocalLength                     : 50.0 mm
+PentaxVersion                   : 3.0.0.0
+PentaxModelType                 : 0
+PreviewImageSize                : 640x480
+PreviewImageLength              : 24899
+PreviewImageStart               : 2284
+PentaxModelID                   : K10D
+Date                            : 2016:09:11
+Time                            : 10:56:23
+Quality                         : Best
+FlashMode                       : Off, Did not fire; Internal
+FocusMode                       : AF-C (Focus-priority)
+AFPointSelected                 : Fixed Center
+ISO                             : 200
+ExposureCompensation            : 0
+MeteringMode                    : Multi-segment
+AutoBracketing                  : 0 EV, No Extended Bracket
+WhiteBalance                    : Shade
+WhiteBalanceMode                : User-Selected
+WorldTimeLocation               : Hometown
+HometownCity                    : Denver
+DestinationCity                 : New York
+HometownDST                     : No
+DestinationDST                  : No
+DSPFirmwareVersion              : 1.00.00.05
+CPUFirmwareVersion              : 1.00.00.05
+EffectiveLV                     : 14.3
+ImageEditing                    : None
+PictureMode                     : Green Mode; 1/2 EV steps
+DriveMode                       : Continuous; No Timer; Shutter Button; Single Exposure
+DataScaling                     : 8192
+PreviewImageBorders             : 26 26 0 0
+LensType                        : smc PENTAX-DA 18-55mm F3.5-5.6 AL
+SensitivityAdjust               : 0
+ImageEditCount                  : 0
+CameraTemperature               : 30 C
+AELock                          : Off
+NoiseReduction                  : Off
+FlashExposureComp               : 0
+ImageTone                       : Natural
+SRResult                        : Not stabilized
+ShakeReduction                  : Off
+SRHalfPressTime                 : 1.22 s
+SRFocalLength                   : 50 mm
+ShutterCount                    : 12365
+RawDevelopmentProcess           : 1 (K10D,K200D,K2000,K-m)
+BlackPoint                      : 0 0 0 0
+WhitePoint                      : 8032 8192 8192 8320
+PictureMode2                    : Green Mode
+ProgramLine                     : Normal
+EVSteps                         : 1/2 EV Steps
+E-DialInProgram                 : Tv or Av
+ApertureRingUse                 : Prohibited
+FlashOptions                    : Normal
+MeteringMode2                   : Multi-segment
+AFPointMode                     : Fixed Center
+FocusMode2                      : AF-C
+AFPointSelected2                : Center
+ISOFloor                        : 200
+DriveMode2                      : Continuous
+ExposureBracketStepSize         : 0.5
+BracketShotNumber               : n/a
+WhiteBalanceSet                 : Shade
+MultipleExposureSet             : Off
+RawAndJpgRecording              : JPEG (Best)
+JpgRecordedPixels               : 10 MP
+FlashOptions2                   : Auto
+MeteringMode3                   : Multi-segment
+SRActive                        : No
+Rotation                        : Horizontal (normal)
+ISOSetting                      : Manual
+SensitivitySteps                : 1 EV Steps
+TvExposureTimeSetting           : 1/128
+AvApertureSetting               : 8.0
+SvISOSetting                    : 100
+BaseExposureCompensation        : +1.0
+AEExposureTime                  : 1/341
+AEAperture                      : 10.4
+AE_ISO                          : 200
+AEXv                            : 0
+AEBXv                           : 0
+AEMinExposureTime               : 1/3862
+AEProgramMode                   : Sv or Green Mode
+AEApertureSteps                 : 15
+AEMaxAperture                   : 5.7
+AEMaxAperture2                  : 5.4
+AEMinAperture                   : 38
+AEMeteringMode                  : Multi-segment
+FlashExposureCompSet            : -2.0
+AutoAperture                    : On
+MinAperture                     : 22
+LensFStops                      : 5
+MinFocusDistance                : 0.25-0.28 m
+FocusRangeIndex                 : 5
+LensFocalLength                 : 50.0 mm
+NominalMaxAperture              : 5.7
+NominalMinAperture              : 38
+MaxAperture                     : 5.4
+FlashStatus                     : Off
+InternalFlashMode               : Did not fire, Normal
+ExternalFlashMode               : Off
+InternalFlashStrength           : 0
+TTL_DA_AUp                      : 0
+TTL_DA_ADown                    : 0
+TTL_DA_BUp                      : 0
+TTL_DA_BDown                    : 0
+ExternalFlashGuideNumber        : n/a
+ExternalFlashExposureComp       : n/a
+ExternalFlashBounce             : n/a
+AEMeteringSegments              : 13.6 13.1 12.0 12.9 12.1 14.0 13.5 13.8 13.8 13.8 13.6 13.8 13.8 13.9 13.1 13.3
+FlashMeteringSegments           : 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+SlaveFlashMeteringSegments      : 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+WB_RGGBLevelsDaylight           : 13600 8192 8192 8765
+WB_RGGBLevelsShade              : 16128 8192 8192 6635
+WB_RGGBLevelsCloudy             : 14560 8192 8192 7782
+WB_RGGBLevelsTungsten           : 8192 8192 8192 20971
+WB_RGGBLevelsFluorescentD       : 17376 8192 8192 8847
+WB_RGGBLevelsFluorescentN       : 14528 8192 8192 10076
+WB_RGGBLevelsFluorescentW       : 13088 8192 8192 12206
+WB_RGGBLevelsFlash              : 13632 8192 8192 8601
+ManufactureDate                 : 2006:11:30
+ProductionCode                  : 1.2
+InternalSerialNumber            : 5105408
+PowerSource                     : Body Battery
+BodyBatteryState                : Running Low
+GripBatteryState                : Empty or Missing
+BodyBatteryADNoLoad             : 162 (7.1V, 20%)
+BodyBatteryADLoad               : 158 (6.9V, 17%)
+GripBatteryADNoLoad             : 4
+GripBatteryADLoad               : 1
+AFPredictor                     : -5
+AFDefocus                       : 3
+AFIntegrationTime               : 0 ms
+AFPointsInFocus                 : Center (horizontal)
+WBShiftAB                       : 1
+WBShiftGM                       : 0
+FlashpixVersion                 : 0100
+ColorSpace                      : sRGB
+ExifImageWidth                  : 3872
+ExifImageHeight                 : 2592
+InteropIndex                    : R98 - DCF basic file (sRGB)
+InteropVersion                  : 0100
+SensingMethod                   : One-chip color area
+FileSource                      : Digital Camera
+SceneType                       : Directly photographed
+CustomRendered                  : Normal
+ExposureMode                    : Auto
+FocalLengthIn35mmFormat         : 75 mm
+SceneCaptureType                : Standard
+Contrast                        : Normal
+Saturation                      : Normal
+Sharpness                       : Normal
+SubjectDistanceRange            : Distant
+PrintIMVersion                  : 0300
+Compression                     : JPEG (old-style)
+ThumbnailOffset                 : 46172
+ThumbnailLength                 : 6264
+ImageWidth                      : 3872
+ImageHeight                     : 2592
+EncodingProcess                 : Baseline DCT, Huffman coding
+BitsPerSample                   : 8
+ColorComponents                 : 3
+YCbCrSubSampling                : YCbCr4:2:2 (2 1)
+Aperture                        : 9.5
+ImageSize                       : 3872x2592
+LensID                          : smc PENTAX-DA 18-55mm F3.5-5.6 AL
+Megapixels                      : 10.0
+PreviewImage                    : (Binary data 24899 bytes, use -b option to extract)
+ScaleFactor35efl                : 1.5
+ShutterSpeed                    : 1/350
+ThumbnailImage                  : (Binary data 6264 bytes, use -b option to extract)
+CircleOfConfusion               : 0.020 mm
+FOV                             : 27.0 deg
+FocalLength35efl                : 50.0 mm (35 mm equivalent: 75.0 mm)
+HyperfocalDistance              : 13.14 m
+LightValue                      : 13.9

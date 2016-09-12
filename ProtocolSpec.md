@@ -1,10 +1,13 @@
+This is the ABNF definition of the request/response messages to be 
+transmitted between the Java process and the Perl process.
+---
 Basic Rules:
 ```
 NULL   = %x00      
 BYTE   = %x00-FF    ; 8 bits of data
 INT    = 4BYTE      ; 32-bit signed integer
-CHAR   = %x01-FF    ; any Extended ASCII character, excluding NUL
-STRING = *CHAR NULL ; a null-terminated character string  
+CHAR   = %x01-FF    ; any Extended ASCII character, excluding NULL
+STRING = *CHAR NULL ; a NULL-terminated character string  
 ```
 
 Magic Numbers:
@@ -15,28 +18,29 @@ END   = %x00FADE00 ; end of a message
 
 Requests:
 ```
-Request      = BEGIN RequestBody  END
+Request      = BEGIN RequestBody END
           
 RequestBody  = SetOption /
                ClearOptions /
+               SetTags /
                ExtractInfo
           
 SetOption    = %x01   ; type = 1
                STRING ; option name
                STRING ; option value
-               ; result = OK
+                      ; ... Response = OK
 
-ClearOptions = %x02   ; type = 2
-               ; result = OK
+ClearOptions = %x02 ; type = 2
+                    ; ... Response = OK
 
 SetTags      = %x03    ; type = 3
                INT     ; number of tag names
                *STRING ; tag names
-               ; result = OK
+                       ; ... Response = OK
                
 ExtractInfo  = %x04   ; type = 4
                STRING ; filename
-               ; result = TagInfo | Error
+                      ; ... Response = TagInfo / Error
 ```
 
 Responses:
@@ -54,15 +58,15 @@ Error        = %x02   ; type = 2
                
 TagInfo      = %x03   ; type = 3
                INT    ; number of tags
-               *Tag   ; tag names/values
+               *Tag   ; tags (name/value pairs)
                
-Tag          = STRING                      ; tag name
-               (StringValue / BinaryValue) ; tag value
+Tag          = STRING                      ; name
+               (StringValue / BinaryValue) ; value
 
-StringValue  = %x01   ; value type = 1
+StringValue  = %x01   ; type = 1
                STRING ; value
 
-BinaryValue  = %x02   ; value type = 2
+BinaryValue  = %x02   ; type = 2
                INT    ; data length (# of octets)
                *BYTE  ; data
 ```

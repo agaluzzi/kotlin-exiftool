@@ -1,11 +1,12 @@
 package galuzzi.exif
 
-import org.testng.Assert.assertNotNull
+import galuzzi.file.WorkDir
+import galuzzi.io.getResource
+import org.testng.Assert
+import org.testng.annotations.DataProvider
 import org.testng.annotations.Test
-import java.io.File
-import java.nio.file.Files
 import java.nio.file.Path
-import java.nio.file.Paths
+import java.util.regex.Pattern
 
 /**
  *
@@ -16,64 +17,68 @@ class ExifToolTest
 {
     companion object
     {
-        var path:Path? = null
+        val excludes = setOf("Directory",
+                             "FileModifyDate",
+                             "FileAccessDate",
+                             "FileCreateDate",
+                             "ThumbnailImage",
+                             "DataDump",
+                             "PreviewImage")
 
-        fun getTestImagePath():Path
+        var paths:Array<Path>? = null
+
+        fun getTestImagePaths():Array<Path>
         {
-            if (path == null)
+            if (paths == null)
             {
-                val tmpdir = System.getProperty("java.io.tmpdir")
-                assertNotNull(tmpdir)
-                val file = Paths.get(tmpdir + File.separatorChar + "ExifToolTest.jpg")
-
-                val resource = ClassLoader.getSystemResource("example.jpg")
-                assertNotNull(resource)
-
-                Files.write(file, resource.readBytes())
-                file.toFile().deleteOnExit()
-                path = file
+                val dir = WorkDir.create(WorkDir.Type.TEMP, "ExifToolTest")
+                paths = arrayOf(
+                        getResource("example.jpg").copyInto(dir),
+                        getResource("example2.jpg").copyInto(dir))
             }
-            return path!!
+            return paths!!
         }
     }
 
-    @Test
-    fun testQuery()
+    @DataProvider
+    fun images():Array<Array<Path>>
+    {
+        val paths:Array<Path> = getTestImagePaths()
+        return Array(paths.size, { i -> arrayOf(paths[i]) })
+    }
+
+    @Test(dataProvider = "images")
+    fun testQuery(image:Path)
     {
         val tool = ExifTool.launch()
-
-        tool.setOption("FastScan", "2")
         tool.setOption("Composite", "1")
         tool.setOption("Sort", "File")
         tool.setOption("Duplicates", "0")
 
-        var binary = 0
+        val info:TagInfo = tool.extractInfo(image)
 
-        val info = tool.extractInfo(image)
-        info.entries.sortedBy { it.key }.forEach {
-            val tag:String = it.key
-            val value:Any = it.value
-            if (value is String)
-            {
-                print("$tag = $value")
-                println()
-            }
-            else if (value is ByteArray)
-            {
-                println("$tag = ${value.size} bytes *********************")
-                binary++
+        val basename = image.fileName.toString().substringBeforeLast('.')
 
-                if (tag == "ThumbnailImage")
-                {
-                    Files.write(Paths.get("C:\\Temp\\thumb.jpg"), value)
+        getResource("$basename.info")
+                .loadString()
+                .split(Pattern.compile("\r?\n"))
+                .forEach {
+                    if (!it.isBlank())
+                    {
+                        val tag = it.substring(0, 32).trim()
+                        val expect = it.substring(33).trim()
+                        val actual = info[tag]?.trim()
+                        if (!excludes.contains(tag))
+                        {
+                            Assert.assertEquals(actual, expect, "Wrong value for tag '${tag}'")
+                        }
+                    }
                 }
-            }
-            else
-            {
-                throw Exception("unknown type")
-            }
-        }
 
-        println("\nTotal: ${info.size} ($binary binary)")
+        val expectThumb = getResource("${basename}_thumb.jpg").load()
+        val actualThumb = info.getBinary("ThumbnailImage")
+
+        Assert.assertNotNull(actualThumb)
+        Assert.assertEquals(actualThumb!!.size, expectThumb.size, "Wrong thumbnail size")
     }
 }
