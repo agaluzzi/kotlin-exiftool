@@ -8,8 +8,7 @@ use strict;
 use warnings;
 
 # Add current directory to library path
-use FindBin;
-use lib "$FindBin::Bin";
+use lib ".";
 
 # Import encode/decode functions
 use Codec;

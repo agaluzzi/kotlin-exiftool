@@ -18,11 +18,14 @@ class ExifToolTest
     companion object
     {
         val excludes = setOf("Directory",
+                             "FileName",
                              "FileModifyDate",
                              "FileAccessDate",
                              "FileCreateDate",
+                             "FilePermissions",
                              "ThumbnailImage",
                              "DataDump",
+                             "ThumbnailImage",
                              "PreviewImage")
 
         var paths:Array<Path>? = null
@@ -54,6 +57,7 @@ class ExifToolTest
         tool.setOption("Composite", "1")
         tool.setOption("Sort", "File")
         tool.setOption("Duplicates", "0")
+        tool.setOption("PrintConv", "0")
 
         val info:TagInfo = tool.extractInfo(image)
 
@@ -70,7 +74,8 @@ class ExifToolTest
                         val actual = info[tag]?.trim()
                         if (!excludes.contains(tag))
                         {
-                            Assert.assertEquals(actual, expect, "Wrong value for tag '${tag}'")
+                            Assert.assertEquals(trim(actual), trim(expect), "Wrong value for tag '$tag'")
+                            println(trim(actual))
                         }
                     }
                 }
@@ -80,5 +85,10 @@ class ExifToolTest
 
         Assert.assertNotNull(actualThumb)
         Assert.assertEquals(actualThumb!!.size, expectThumb.size, "Wrong thumbnail size")
+    }
+
+    fun trim(str:String?):String?
+    {
+        return str?.replace(Regex("^(\\d+)\\.(\\d{4}).*$"), "$1.$2")
     }
 }

@@ -1,138 +1,138 @@
 ExifToolVersion                 : 10.25
 FileName                        : example.jpg
 Directory                       : .
-FileSize                        : 32 kB
+FileSize                        : 32764
 FileModifyDate                  : 2016:09:05 14:44:51-06:00
 FileAccessDate                  : 2016:09:05 14:44:40-06:00
 FileCreateDate                  : 2016:09:05 14:44:50-06:00
-FilePermissions                 : rw-rw-rw-
+FilePermissions                 : 666
 FileType                        : JPEG
-FileTypeExtension               : jpg
+FileTypeExtension               : JPG
 MIMEType                        : image/jpeg
-JFIFVersion                     : 1.01
-ExifByteOrder                   : Little-endian (Intel, II)
+JFIFVersion                     : 1 1
+ExifByteOrder                   : II
 Make                            : Canon
 Model                           : Canon PowerShot S40
-Orientation                     : Horizontal (normal)
+Orientation                     : 1
 XResolution                     : 180
 YResolution                     : 180
-ResolutionUnit                  : inches
+ResolutionUnit                  : 2
 ModifyDate                      : 2003:12:14 12:01:44
-YCbCrPositioning                : Centered
-ExposureTime                    : 1/500
+YCbCrPositioning                : 1
+ExposureTime                    : 0.002
 FNumber                         : 4.9
 ExifVersion                     : 0220
 DateTimeOriginal                : 2003:12:14 12:01:44
 CreateDate                      : 2003:12:14 12:01:44
-ComponentsConfiguration         : Y, Cb, Cr, -
+ComponentsConfiguration         : 1 2 3 0
 CompressedBitsPerPixel          : 5
-ShutterSpeedValue               : 1/501
-ApertureValue                   : 5.0
-MaxApertureValue                : 2.8
-Flash                           : Auto, Did not fire
-FocalLength                     : 21.3 mm
-MacroMode                       : Normal
-SelfTimer                       : Off
-Quality                         : Superfine
-CanonFlashMode                  : Auto
-ContinuousDrive                 : Single
-FocusMode                       : Single
-RecordMode                      : JPEG
-CanonImageSize                  : Large
-EasyMode                        : Manual
-DigitalZoom                     : None
-Contrast                        : Normal
-Saturation                      : Normal
+ShutterSpeedValue               : 0.00199589286846507
+ApertureValue                   : 5.02152302809876
+MaxApertureValue                : 2.80000199773637
+Flash                           : 24
+FocalLength                     : 21.3125
+MacroMode                       : 2
+SelfTimer                       : 0
+Quality                         : 5
+CanonFlashMode                  : 1
+ContinuousDrive                 : 0
+FocusMode                       : 4
+RecordMode                      : 1
+CanonImageSize                  : 0
+EasyMode                        : 1
+DigitalZoom                     : 0
+Contrast                        : 0
+Saturation                      : 0
 Sharpness                       : 0
 CameraISO                       : 100
-MeteringMode                    : Center-weighted average
-FocusRange                      : Auto
-AFPoint                         : Center
-CanonExposureMode               : Program AE
-LensType                        : n/a
-MaxFocalLength                  : 21.3125 mm
-MinFocalLength                  : 7.09375 mm
-FocalUnits                      : 32/mm
-MaxAperture                     : 5
+MeteringMode                    : 5
+FocusRange                      : 1
+AFPoint                         : 12291
+CanonExposureMode               : 1
+LensType                        : 65535
+MaxFocalLength                  : 21.3125
+MinFocalLength                  : 7.09375
+FocalUnits                      : 32
+MaxAperture                     : 5.02152302809876
 MinAperture                     : 8
 FlashActivity                   : 0
-FlashBits                       : (none)
-FocusContinuous                 : Single
-AESetting                       : Normal AE
+FlashBits                       : 0
+FocusContinuous                 : 0
+AESetting                       : 0
 DisplayAperture                 : 4.9
 ZoomSourceWidth                 : 2272
 ZoomTargetWidth                 : 2272
-SpotMeteringMode                : AF Point
-FocalType                       : Zoom
-FocalPlaneXSize                 : 7.26 mm
-FocalPlaneYSize                 : 5.46 mm
+SpotMeteringMode                : 1
+FocalType                       : 2
+FocalPlaneXSize                 : 7.2644
+FocalPlaneYSize                 : 5.461
 AutoISO                         : 100
 BaseISO                         : 100
-MeasuredEV                      : 13.63
-TargetAperture                  : 5
-TargetExposureTime              : 1/501
+MeasuredEV                      : 13.625
+TargetAperture                  : 5.02152302809876
+TargetExposureTime              : 0.00199589286846507
 ExposureCompensation            : 0
-WhiteBalance                    : Auto
-SlowShutter                     : Off
+WhiteBalance                    : 0
+SlowShutter                     : 0
 SequenceNumber                  : 0
 OpticalZoomCode                 : 6
 FlashGuideNumber                : 0
-AFPointsInFocus                 : Center
+AFPointsInFocus                 : 12290
 FlashExposureComp               : 0
-AutoExposureBracketing          : Off
+AutoExposureBracketing          : 0
 AEBBracketValue                 : 0
-ControlMode                     : Camera Local Control
-FocusDistanceUpper              : 7.82 m
-FocusDistanceLower              : 0 m
+ControlMode                     : 1
+FocusDistanceUpper              : 7.82
+FocusDistanceLower              : 0
 BulbDuration                    : 0
-CameraType                      : Compact
+CameraType                      : 250
 CanonImageType                  : IMG:PowerShot S40 JPEG
 CanonFirmwareVersion            : Firmware Version 1.10
-FileNumber                      : 117-1771
+FileNumber                      : 1171771
 OwnerName                       : Andreas Huggel
-CanonModelID                    : PowerShot S40
+CanonModelID                    : 17891328
 UserComment                     : 
 FlashpixVersion                 : 0100
-ColorSpace                      : sRGB
+ColorSpace                      : 1
 ExifImageWidth                  : 2272
 ExifImageHeight                 : 1704
-InteropIndex                    : R98 - DCF basic file (sRGB)
+InteropIndex                    : R98
 InteropVersion                  : 0100
 RelatedImageWidth               : 2272
 RelatedImageHeight              : 1704
 FocalPlaneXResolution           : 8114.285714
 FocalPlaneYResolution           : 8114.285714
-FocalPlaneResolutionUnit        : inches
-SensingMethod                   : One-chip color area
-FileSource                      : Digital Camera
-CustomRendered                  : Normal
-ExposureMode                    : Auto
+FocalPlaneResolutionUnit        : 2
+SensingMethod                   : 2
+FileSource                      : 3
+CustomRendered                  : 0
+ExposureMode                    : 0
 DigitalZoomRatio                : 1
-SceneCaptureType                : Standard
-Compression                     : JPEG (old-style)
+SceneCaptureType                : 0
+Compression                     : 6
 ThumbnailOffset                 : 2066
 ThumbnailLength                 : 5448
 ImageWidth                      : 480
 ImageHeight                     : 360
-EncodingProcess                 : Baseline DCT, Huffman coding
+EncodingProcess                 : 0
 BitsPerSample                   : 8
 ColorComponents                 : 3
-YCbCrSubSampling                : YCbCr4:2:0 (2 2)
+YCbCrSubSampling                : 2 2
 Aperture                        : 4.9
-DriveMode                       : Single-frame Shooting
+DriveMode                       : 2
 ISO                             : 100
 ImageSize                       : 480x360
-Lens                            : 7.1 - 21.3 mm
-LensID                          : Unknown 7-21mm
-Megapixels                      : 0.173
-ScaleFactor35efl                : 4.9
-ShootingMode                    : Program AE
-ShutterSpeed                    : 1/500
+Lens                            : 7.09375
+LensID                          : 65535
+Megapixels                      : 0.1728
+ScaleFactor35efl                : 4.86688586114374
+ShootingMode                    : 1
+ShutterSpeed                    : 0.002
 ThumbnailImage                  : (Binary data 5448 bytes, use -b option to extract)
-CircleOfConfusion               : 0.006 mm
-DOF                             : 2.17 m (3.11 - 5.28 m)
-FOV                             : 19.7 deg
-FocalLength35efl                : 21.3 mm (35 mm equivalent: 103.7 mm)
-HyperfocalDistance              : 15.02 m
-Lens35efl                       : 7.1 - 21.3 mm (35 mm equivalent: 34.5 - 103.7 mm)
-LightValue                      : 13.6
+CircleOfConfusion               : 0.00617361111111111
+DOF                             : 3.10568376921705 5.27652508121374
+FOV                             : 19.6895731474318
+FocalLength35efl                : 103.725504915626
+HyperfocalDistance              : 15.0152802965956
+Lens35efl                       : 34.5244715774884
+LightValue                      : 13.5513477831178

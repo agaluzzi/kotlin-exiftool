@@ -20,8 +20,12 @@ class ExifTool private constructor(val process:Process)
 
         fun launch():ExifTool
         {
-            val script = unpack()
-            val process = ProcessBuilder("perl", script.toAbsolutePath().toString()).start()
+            val script:Path = unpack()
+
+            val process = ProcessBuilder("perl", script.fileName.toString())
+                    .directory(script.parent.toFile())
+                    .start()
+
             return ExifTool(process)
         }
 
