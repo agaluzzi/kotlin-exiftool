@@ -17,14 +17,6 @@ version = '0.1'
 apply plugin: 'kotlin'
 apply plugin: 'maven-publish'
 
-//publishing {
-//    publications {
-//        mavenJava(MavenPublication) {
-//            from components.java
-//        }
-//    }
-//}
-
 repositories {
     mavenCentral()
 }
@@ -44,3 +36,10 @@ test {
     useTestNG()
 }
 
+publishing {
+    publications {
+        mavenJava( MavenPublication ) {
+            from components.java
+        }
+    }
+}
