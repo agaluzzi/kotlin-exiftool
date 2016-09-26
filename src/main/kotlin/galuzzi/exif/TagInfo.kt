@@ -1,5 +1,7 @@
 package galuzzi.exif
 
+import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalAccessor
 import java.util.*
 
 /**
@@ -43,6 +45,42 @@ class TagInfo
         return map[tag] as? ByteArray
     }
 
+    fun getDateTime(tag:String, format:DateTimeFormatter):TemporalAccessor?
+    {
+        val str:String? = get(tag)
+        return if (str != null && str.isNotEmpty()) format.parse(str) else null
+    }
+
+    fun getDateTimeOriginal():TemporalAccessor?
+    {
+        var ts:TemporalAccessor? = getDateTime("SubSecDateTimeOriginal", DATE_TIME_SUBSEC_FORMAT)
+        if (ts == null)
+        {
+            ts = getDateTime("DateTimeOriginal", DATE_TIME_FORMAT)
+        }
+        return ts
+    }
+
+    fun getCreateDate():TemporalAccessor?
+    {
+        var ts:TemporalAccessor? = getDateTime("SubSecCreateDate", DATE_TIME_SUBSEC_FORMAT)
+        if (ts == null)
+        {
+            ts = getDateTime("CreateDate", DATE_TIME_FORMAT)
+        }
+        return ts
+    }
+
+    fun getTimestamp():TemporalAccessor?
+    {
+        var ts:TemporalAccessor? = getDateTimeOriginal()
+        if (ts == null)
+        {
+            ts = getCreateDate()
+        }
+        return ts
+    }
+
     fun forEach(action:(tag:String, value:Any) -> Unit)
     {
         map.forEach(action)
@@ -52,5 +90,11 @@ class TagInfo
     {
         map.entries.sortedBy { it.key }
                 .forEach { action.invoke(it.key, it.value) }
+    }
+
+    companion object
+    {
+        val DATE_TIME_FORMAT:DateTimeFormatter = DateTimeFormatter.ofPattern("uuuu:MM:dd HH:mm:ss")
+        val DATE_TIME_SUBSEC_FORMAT:DateTimeFormatter = DateTimeFormatter.ofPattern("uuuu:MM:dd HH:mm:ss.SSS")
     }
 }

@@ -1,0 +1,96 @@
+ExifToolVersion                 : 10.25
+FileName                        : example3.jpg
+Directory                       : .
+FileSize                        : 2179214
+FileModifyDate                  : 2016:07:23 13:39:06-06:00
+FileAccessDate                  : 2016:09:25 21:31:36-06:00
+FileCreateDate                  : 2016:09:25 21:31:36-06:00
+FilePermissions                 : 666
+FileType                        : JPEG
+FileTypeExtension               : JPG
+MIMEType                        : image/jpeg
+ExifByteOrder                   : MM
+Make                            : Apple
+Model                           : iPhone 5s
+Orientation                     : 1
+XResolution                     : 72
+YResolution                     : 72
+ResolutionUnit                  : 2
+Software                        : 9.3.2
+ModifyDate                      : 2016:07:23 13:35:48
+YCbCrPositioning                : 1
+ExposureTime                    : 0.008333333333
+FNumber                         : 2.2
+ExposureProgram                 : 2
+ISO                             : 32
+ExifVersion                     : 0221
+DateTimeOriginal                : 2016:07:23 13:35:48
+CreateDate                      : 2016:07:23 13:35:48
+ComponentsConfiguration         : 1 2 3 0
+ShutterSpeedValue               : 0.00831299956277862
+ApertureValue                   : 2.2000000590909
+BrightnessValue                 : 5.569673704
+ExposureCompensation            : 0
+MeteringMode                    : 3
+Flash                           : 24
+FocalLength                     : 4.15
+SubjectArea                     : 2416 1130 610 612
+RunTimeFlags                    : 1
+RunTimeValue                    : 22039981036125
+RunTimeEpoch                    : 0
+RunTimeScale                    : 1000000000
+SubSecTimeOriginal              : 314
+SubSecTimeDigitized             : 314
+FlashpixVersion                 : 0100
+ColorSpace                      : 1
+ExifImageWidth                  : 3264
+ExifImageHeight                 : 2448
+SensingMethod                   : 2
+SceneType                       : 1
+ExposureMode                    : 0
+WhiteBalance                    : 0
+FocalLengthIn35mmFormat         : 29
+SceneCaptureType                : 0
+LensInfo                        : 4.15 4.15 2.2 2.2
+LensMake                        : Apple
+LensModel                       : iPhone 5s back camera 4.15mm f/2.2
+GPSLatitudeRef                  : N
+GPSLongitudeRef                 : W
+GPSAltitudeRef                  : 0
+GPSTimeStamp                    : 19:35:48
+GPSSpeedRef                     : K
+GPSSpeed                        : 0
+GPSImgDirectionRef              : T
+GPSImgDirection                 : 172.8637602
+GPSDestBearingRef               : T
+GPSDestBearing                  : 172.8637602
+GPSDateStamp                    : 2016:07:23
+GPSHPositioningError            : 5
+Compression                     : 6
+ThumbnailOffset                 : 2014
+ThumbnailLength                 : 11253
+ImageWidth                      : 3264
+ImageHeight                     : 2448
+EncodingProcess                 : 0
+BitsPerSample                   : 8
+ColorComponents                 : 3
+YCbCrSubSampling                : 2 2
+Aperture                        : 2.2
+GPSAltitude                     : 1653.159091
+GPSDateTime                     : 2016:07:23 19:35:48Z
+GPSLatitude                     : 39.6924583333333
+GPSLongitude                    : -104.904786111111
+GPSPosition                     : 39.6924583333333 -104.904786111111
+ImageSize                       : 3264x2448
+Megapixels                      : 7.990272
+RunTimeSincePowerUp             : 22039.981036125
+ScaleFactor35efl                : 6.98795180722891
+ShutterSpeed                    : 0.008333333333
+SubSecCreateDate                : 2016:07:23 13:35:48.314
+SubSecDateTimeOriginal          : 2016:07:23 13:35:48.314
+ThumbnailImage                  : (Binary data 11253 bytes, use -b option to extract)
+CircleOfConfusion               : 0.00429972350378608
+FOV                             : 63.6549469203798
+FocalLength35efl                : 29
+HyperfocalDistance              : 1.8206773258829
+LightValue                      : 10.8257538329408
