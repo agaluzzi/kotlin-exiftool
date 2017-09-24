@@ -20,7 +20,7 @@ abstract class Resource
 
     abstract protected fun open():InputStream
 
-    fun <T> use(block:(InputStream) -> T)
+    fun <T> use(block:(InputStream) -> T):T
     {
         return open().use { block.invoke(it) }
     }

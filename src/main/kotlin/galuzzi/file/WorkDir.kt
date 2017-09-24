@@ -19,7 +19,7 @@ class WorkDir private constructor(val path:Path)
         }
     }
 
-    enum class Type(val systemProperty:String)
+    enum class Type(private val systemProperty:String)
     {
         TEMP("java.io.tmpdir"),
         USER("user.home");
@@ -33,5 +33,10 @@ class WorkDir private constructor(val path:Path)
     fun resolve(name:String):Path
     {
         return path.resolve(name)
+    }
+
+    override fun toString():String
+    {
+        return path.toString()
     }
 }
