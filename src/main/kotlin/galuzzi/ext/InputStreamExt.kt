@@ -4,26 +4,8 @@ package galuzzi.ext
  * Extensions to standard Java I/O classes.
  */
 
-import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.io.InputStream
-
-private val logger = LoggerFactory.getLogger("galuzzi.ext.IO")
-
-/**
- * Closes a resource, catching and logging any exceptions.
- */
-fun AutoCloseable.closeSafely()
-{
-    try
-    {
-        this.close()
-    }
-    catch(e:Exception)
-    {
-        logger.error("Error closing {}", this, e)
-    }
-}
 
 /**
  * Reads exactly some number of bytes from an [InputStream] into a [ByteArray].
