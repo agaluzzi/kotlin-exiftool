@@ -15,11 +15,13 @@ use constant {
     REQUEST_CLEAROPTIONS => 2,
     REQUEST_SETTAGS      => 3,
     REQUEST_EXTRACTINFO  => 4,
+    REQUEST_TEST         => 0xAA,
 
     # Response types
     RESPONSE_OK          => 1,
-    RESPONSE_ERROR       => 2,
-    RESPONSE_TAGINFO     => 3,
+    RESPONSE_TAGINFO     => 2,
+    RESPONSE_ECHO        => 0xAA,
+    RESPONSE_ERROR       => 0xFF,
 
     # Value types
     VALUE_STRING         => 1,
@@ -36,7 +38,7 @@ binmode(STDOUT) || die "Failed to set binary mode for STDOUT";
 sub readN
 {
     my $n = shift;
-    my $result = read( STDIN, my $buffer, $n);
+    my $result = read(STDIN, my $buffer, $n);
     if ($result == $n)
     {
         return $buffer;
@@ -48,7 +50,7 @@ sub readN
     }
     else
     {
-        die( "Error reading from STDIN: $!");
+        die("Error reading from STDIN: $!");
     }
 }
 
@@ -63,7 +65,7 @@ sub flushOutput
 sub tryReadInt
 {
     my $buffer = readN(4);
-    return ( defined $buffer) ? unpack( "l", $buffer ) : undef;
+    return (defined $buffer) ? unpack("l", $buffer) : undef;
 }
 
 sub readInt
@@ -82,7 +84,7 @@ sub readInt
 sub writeInt
 {
     my $value = shift;
-    my $buffer = pack( "l", $value );
+    my $buffer = pack("l", $value);
     print STDOUT $buffer;
 }
 
@@ -94,7 +96,7 @@ sub readByte
     my $buffer = readN(1);
     if (defined $buffer)
     {
-        return  unpack( "C", $buffer )
+        return  unpack("C", $buffer)
     }
     else
     {
@@ -105,7 +107,7 @@ sub readByte
 sub writeByte
 {
     my $value = shift;
-    my $buffer = pack( "C", $value );
+    my $buffer = pack("C", $value);
     print STDOUT $buffer;
 }
 
@@ -123,7 +125,7 @@ sub readBegin
         }
         else
         {
-            die( "Input stream corrupted -- Wrong BEGIN token" );
+            die("Input stream corrupted -- Wrong BEGIN token");
         }
     }
     else
@@ -135,7 +137,7 @@ sub readBegin
 
 sub writeBegin
 {
-    writeInt( BEGIN_TOKEN );
+    writeInt(BEGIN_TOKEN);
 }
 
 #-------------------------------------------------------------------------------
@@ -145,13 +147,13 @@ sub readEnd
 {
     if (readInt() != END_TOKEN)
     {
-        die( "Input stream corrupted -- Wrong END token" );
+        die("Input stream corrupted -- Wrong END token");
     }
 }
 
 sub writeEnd
 {
-    writeInt( END_TOKEN );
+    writeInt(END_TOKEN);
 }
 
 #-------------------------------------------------------------------------------
@@ -159,23 +161,20 @@ sub writeEnd
 
 sub readString
 {
-    my $str;
+    my $length = readInt();
+    my $str = readN($length);
+    if (!defined $str)
     {
-        local $/ = "\0";
-        $str = <STDIN>;
+        die("Failed to read string of length $length (end-of-stream)");
     }
-    if (!defined($str) || $str !~ /\0\z/)
-    {
-        die("Failed to read null-terminated string (end-of-stream)");
-    }
-    chop($str); # remove nul
     return $str;
 }
 
 sub writeString
 {
     my $str = shift;
-    print STDOUT $str."\0";
+    writeInt(length $str);
+    print STDOUT $str;
 }
 
 #-------------------------------------------------------------------------------
@@ -196,7 +195,7 @@ sub readBinary
 sub writeBinary
 {
     my $data = shift;
-    writeInt( length($data) );
+    writeInt(length($data));
     print STDOUT $data;
 }
 
@@ -243,23 +242,52 @@ sub sendError
 
 sub sendTagInfo
 {
+    my $resultCode = shift;
     my $info_ref = shift;
-    my %info = %$info_ref;
 
     writeBegin();
     writeByte(RESPONSE_TAGINFO);
 
-    # Write the number of tags
-    my @tagNames = keys %info;
-    writeInt( scalar @tagNames );
+    # Write result code
+    writeByte($resultCode);
 
-    # Write each tag...
-    foreach my $tag (@tagNames)
+    if (defined $info_ref)
     {
-        writeString($tag);
-        writeValue($info{$tag});
+        # Write the number of tags
+        my %info = %$info_ref;
+        my @tagNames = keys %info;
+        writeInt(scalar @tagNames);
+
+        # Write each tag...
+        foreach my $tag (@tagNames)
+        {
+            writeString($tag);
+            writeValue($info{$tag});
+        }
+    }
+    else
+    {
+        # Write zero tags
+        writeInt(0);
     }
 
+    writeEnd();
+    flushOutput();
+}
+
+sub sendEcho
+{
+    my $byte = shift;
+    my $int = shift;
+    my $string = shift;
+    my $binary = shift;
+
+    writeBegin();
+    writeByte(RESPONSE_ECHO);
+    writeByte($byte);
+    writeInt($int);
+    writeString($string);
+    writeBinary($binary);
     writeEnd();
     flushOutput();
 }

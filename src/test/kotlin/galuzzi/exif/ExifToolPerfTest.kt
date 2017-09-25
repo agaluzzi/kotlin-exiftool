@@ -11,21 +11,23 @@ fun main(args:Array<String>)
         println("Image size = ${Files.size(it)} bytes")
         testPerformance(it, "Warmup") {}
         testPerformance(it, "Defaults") {}
-        testPerformance(it, "No Print Conversion") { it.setOption("PrintConv", "0") }
-        testPerformance(it, "Fast Mode") { it.setOption("FastScan", "2") }
-        testPerformance(it, "With Composite Tags") { it.setOption("Composite", "1") }
-        testPerformance(it, "No Dups") { it.setOption("Duplicates", "0") }
-        testPerformance(it, "Optimized") {
-            it.setOption("PrintConv", "0")
-            it.setOption("FastScan", "2")
-            it.setOption("Composite", "1")
-            it.setOption("Duplicates", "0")
+        testPerformance(it, "No Print Conversion") { setOption("PrintConv", "0") }
+        testPerformance(it, "No System Tags") { setOption("SystemTags", "0") }
+        testPerformance(it, "Fast Mode") { setOption("FastScan", "2") }
+        testPerformance(it, "With Composite Tags") { setOption("Composite", "1") }
+        testPerformance(it, "No Dups") { setOption("Duplicates", "0") }
+        testPerformance(it, "** Optimized") {
+            setOption("PrintConv", "0")
+            setOption("SystemTags", "0")
+            setOption("FastScan", "2")
+            setOption("Composite", "1")
+            setOption("Duplicates", "0")
         }
     }
 
 }
 
-fun testPerformance(path:Path, title:String, setup:(tool:ExifTool) -> Unit)
+fun testPerformance(path:Path, title:String, setup:ExifTool.() -> Unit)
 {
     println("---------------------------------------------------")
     println("$title...")

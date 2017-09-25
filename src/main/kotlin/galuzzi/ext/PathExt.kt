@@ -8,6 +8,11 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.util.stream.Stream
 
+fun Path.exists():Boolean
+{
+    return Files.exists(this)
+}
+
 fun Path.isDirectory():Boolean
 {
     return Files.isDirectory(this)

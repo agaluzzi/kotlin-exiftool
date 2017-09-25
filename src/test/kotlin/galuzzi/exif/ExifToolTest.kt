@@ -4,11 +4,13 @@ import galuzzi.file.WorkDir
 import galuzzi.io.getResource
 import org.testng.Assert
 import org.testng.Assert.assertEquals
+import org.testng.Assert.assertTrue
 import org.testng.annotations.AfterTest
 import org.testng.annotations.BeforeClass
 import org.testng.annotations.DataProvider
 import org.testng.annotations.Test
 import java.nio.file.Path
+import java.time.format.DateTimeFormatter
 import java.util.regex.Pattern
 
 /**
@@ -113,8 +115,25 @@ class ExifToolTest
         }
 
         val info:TagInfo = tool.extractInfo(image)
-        val result = info.getTimestamp().toString().substringAfter("to ")
+        val result = DateTimeFormatter.ISO_DATE_TIME.format(info.getTimestamp())
         assertEquals(result, expect)
+    }
+
+    @Test(dataProvider = "images")
+    fun testSetTags(image:Path)
+    {
+        try
+        {
+            tool.setTags(arrayOf("Make", "Model", "LightValue"))
+            assertEquals(3, tool.extractInfo(image).size)
+
+            tool.setTags(emptyArray())
+            assertTrue(tool.extractInfo(image).size > 90)
+        }
+        finally
+        {
+            tool.setTags(emptyArray())
+        }
     }
 
     fun trim(str:String?):String?

@@ -11,7 +11,7 @@ use warnings;
 use lib ".";
 
 # Import encode/decode functions
-use Codec;
+use Protocol;
 
 # Import ExifTool library
 use Image::ExifTool qw(:Public);
@@ -21,8 +21,11 @@ use Image::ExifTool qw(:Public);
 # Create the ExifTool instance
 my $tool = new Image::ExifTool;
 
+# List of tags to query for
+my $tagList = undef;
+
 # Repeatedly read requests from STDIN and send responses to STDOUT...
-while(readBegin())
+while (readBegin())
 {
     # Read the first byte, which is the request type
     my $type = readByte();
@@ -44,9 +47,13 @@ while(readBegin())
     {
         extractInfo();
     }
+    elsif ($type == REQUEST_TEST)
+    {
+        test();
+    }
     else
     {
-        die("Unknown request type: $type" );
+        die("Unknown request type: $type");
     }
 }
 
@@ -63,7 +70,7 @@ sub setOption
     readEnd();
 
     # Perform action
-    $tool->Options( $name => $value );
+    $tool->Options($name => $value);
 
     # Send response
     sendOK();
@@ -88,13 +95,12 @@ sub setTags
     my @tags = ();
     for (my $i = 0; $i < $count; $i++)
     {
-        push( @tags, readString() );
+        push(@tags, readString());
     }
     readEnd();
 
-    # Perform action
-    $tool->Options( RequestAll => 0 );
-    $tool->Options( RequestTags => \@tags );
+    # Store list of tag names to be requested
+    $tagList = ($count == 0) ? undef : \@tags;
 
     # Send response
     sendOK();
@@ -107,21 +113,31 @@ sub extractInfo
     readEnd();
 
     # Perform action
-    my $result = $tool->ExtractInfo( $filename );
+    my $result = defined $tagList ? $tool->ExtractInfo($filename, $tagList) : $tool->ExtractInfo($filename);
 
     # Check result, then send response
     if ($result == 1)
     {
         # Get the desired tag values into a hash
-        my $info = $tool->GetInfo();
-        sendTagInfo($info);
+        my $info = defined $tagList ? $tool->GetInfo($tagList) : $tool->GetInfo();
+        sendTagInfo(1, $info);
     }
     else
     {
-        sendError( "Not a recognized file format" );
+        sendTagInfo(2, undef);
     }
 }
 
+sub test
+{
+    my $byte = readByte();
+    my $int = readInt();
+    my $string = readString();
+    my $binary = readBinary();
+    readEnd();
+
+    sendEcho($byte, $int, $string, $binary);
+}
 
 
 
